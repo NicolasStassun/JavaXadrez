@@ -4,8 +4,8 @@ import java.util.IllegalFormatCodePointException;
 public class Torre extends Peca {
     private boolean primMov;
 
-    public Torre(String cor){
-        super(cor);
+    public Torre(String cor, Posicao posicao){
+        super(cor, posicao);
         this.icone = gerarIcone();
     }
 

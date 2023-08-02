@@ -3,8 +3,8 @@ import java.util.ArrayList;
 public class Rei extends Peca {
     private boolean primMov;
 
-    public Rei(String cor){
-        super(cor);
+    public Rei(String cor, Posicao posicao){
+        super(cor, posicao);
         this.icone = gerarIcone();
     }
 

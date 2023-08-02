@@ -15,31 +15,57 @@ public class Main {
 
         geraTabuleiro();
 
-        // Escolha da peça
-        System.out.println(j1.getPecas());
-        Peca peca = null;
+        do {
 
-        int escolhaPeca = sc.nextInt();
-        peca = j1.getPecas().get(escolhaPeca);
+            // Jogador 1
 
-        // Escolha da posição para o movimento
-        ArrayList <Posicao> posicoes = peca.possiveisMovimentos(tabuleiro);
-        System.out.println(posicoes);
-        int escolhaPosicao = sc.nextInt();
-        Posicao posicao = posicoes.get(escolhaPosicao);
+            System.out.println(j1.getPecas());
+            Peca pecaJ1 = null;
 
-        // Movimentação da peça escolhida para a posição desejada.
-        j1.moverPeca(peca,posicao,tabuleiro,j2);
-        System.out.println(validarVitoria(j2));
+            int escolhaPecaj1 = sc.nextInt();
+            pecaJ1 = j1.getPecas().get(escolhaPecaj1);
+
+            ArrayList <Posicao> posicoesj1 = pecaJ1.possiveisMovimentos(tabuleiro);
+            System.out.println(posicoesj1);
+            int escolhaPosicaoj1 = sc.nextInt();
+            Posicao posicaoj1 = posicoesj1.get(escolhaPosicaoj1);
+
+            j1.moverPeca(pecaJ1,posicaoj1,tabuleiro,j2);
+            System.out.println(validarVitoria(j2));
+
+            // Jogador 2
+
+            System.out.println(j2.getPecas());
+            Peca pecaJ2 = null;
+
+            int escolhaPecaj2 = sc.nextInt();
+            pecaJ2 = j2.getPecas().get(escolhaPecaj2);
+
+            ArrayList <Posicao> posicoesJ2 = pecaJ2.possiveisMovimentos(tabuleiro);
+            System.out.println(posicoesJ2);
+            int escolhaPosicaoJ2 = sc.nextInt();
+            Posicao posicaoJ2 = posicoesJ2.get(escolhaPosicaoJ2);
+
+            j1.moverPeca(pecaJ2,posicaoJ2,tabuleiro,j1);
+            System.out.println(validarVitoria(j1));
+
+
+        }while(validarVitoria(j1) || validarVitoria(j2));
+
+
     }
 
     private static void geraTabuleiro(){
         ArrayList<Posicao> posicaoNoTabuleiro = tabuleiro.getPosicoes();
         for (Posicao posicao : tabuleiro.getPosicoes()) {
-            System.out.println(posicao.getPeca().icone);
+            if (posicao.getPeca() != null) {
+                System.out.print("["+posicao.getPeca().icone + "]");
+            }
+            else{
+                System.out.print("[ ]");
+            }
             if ((tabuleiro.getPosicoes().indexOf(posicao)+1)%8 == 0){
-                System.out.println("\n");
-
+                System.out.print("\n");
             }
 
         }
