@@ -13,15 +13,14 @@ public class Main {
         j1.setCor("Branco", tabuleiro);
         j2.setCor("Preto",tabuleiro);
 
-        geraTabuleiro();
-
         do {
 
             // Jogador 1
 
+            geraTabuleiro();
+
             System.out.println(j1.getPecas());
             Peca pecaJ1 = null;
-
             int escolhaPecaj1 = sc.nextInt();
             pecaJ1 = j1.getPecas().get(escolhaPecaj1);
 
@@ -34,6 +33,8 @@ public class Main {
             System.out.println(validarVitoria(j2));
 
             // Jogador 2
+
+            geraTabuleiro();
 
             System.out.println(j2.getPecas());
             Peca pecaJ2 = null;
@@ -50,7 +51,7 @@ public class Main {
             System.out.println(validarVitoria(j1));
 
 
-        }while(validarVitoria(j1) || validarVitoria(j2));
+        }while(!validarVitoria(j1) || !validarVitoria(j2));
 
 
     }
