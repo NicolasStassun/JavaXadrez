@@ -28,6 +28,72 @@ public class Jogador {
         return pecas;
     }
 
+    public ArrayList<String> mostraPecas(ArrayList<Peca> pecas){
+
+        ArrayList<String> display = new ArrayList<>();
+
+        for (Peca peca:
+             pecas) {
+
+            if (peca instanceof Bispo ){
+                if (peca.getCor().equals("Branco")){
+                    display.add(display.size()+"♗");
+                }
+                else {
+                    display.add(display.size()+"♗");
+                }
+            }
+
+            else if (peca instanceof Cavalo ){
+                if (peca.getCor().equals("Branco")){
+                    display.add(display.size()+"♘");
+                }
+                else {
+                    display.add(display.size()+"♞");
+                }
+            }
+
+            else if (peca instanceof Peao ){
+                if (peca.getCor().equals("Branco")){
+                    display.add(display.size()+"♙");
+                }
+                else {
+                    display.add(display.size()+"♟");
+                }
+            }
+
+            else if (peca instanceof Rainha ){
+                if (peca.getCor().equals("Branco")){
+                    display.add(display.size()+"♕");
+                }
+                else {
+                    display.add(display.size()+"♛");
+                }
+            }
+
+            else if(peca instanceof Rei ){
+                if (peca.getCor().equals("Branco")){
+                    display.add(display.size()+"♔");
+                }
+                else {
+                    display.add(display.size()+"♚");
+                }
+            }
+
+            else if (peca instanceof Torre ){
+                if (peca.getCor().equals("Branco")){
+                    display.add(display.size()+"♖");
+                }
+                else {
+                    display.add(display.size()+"♜");
+                }
+            }
+
+        }
+
+        return display;
+    }
+
     public boolean proporEmpate(Jogador jogador) {
         return true;
     }

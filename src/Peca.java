@@ -53,9 +53,4 @@ public abstract class Peca {
         return cor;
     }
 
-    //public abstract char icone();
-
-
-
-
 }

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.RandomAccess;
 import java.util.Scanner;
 
 public class Main {
@@ -19,15 +18,18 @@ public class Main {
 
             geraTabuleiro();
 
-            System.out.println(j1.getPecas());
+            System.out.println(j1.mostraPecas(j1.getPecas()));
             Peca pecaJ1 = null;
             int escolhaPecaj1 = sc.nextInt();
             pecaJ1 = j1.getPecas().get(escolhaPecaj1);
 
-            ArrayList <Posicao> posicoesj1 = pecaJ1.possiveisMovimentos(tabuleiro);
-            System.out.println(posicoesj1);
+            ArrayList <Posicao> posicoesJ1 = pecaJ1.possiveisMovimentos(tabuleiro);
+            for (Posicao posicao:posicoesJ1) {
+                System.out.println(posicoesJ1.indexOf(posicao));
+
+            }
             int escolhaPosicaoj1 = sc.nextInt();
-            Posicao posicaoj1 = posicoesj1.get(escolhaPosicaoj1);
+            Posicao posicaoj1 = posicoesJ1.get(escolhaPosicaoj1);
 
             j1.moverPeca(pecaJ1,posicaoj1,tabuleiro,j2);
             System.out.println(validarVitoria(j2));
@@ -36,14 +38,17 @@ public class Main {
 
             geraTabuleiro();
 
-            System.out.println(j2.getPecas());
+            System.out.println(j2.mostraPecas(j2.getPecas()));
             Peca pecaJ2 = null;
 
             int escolhaPecaj2 = sc.nextInt();
             pecaJ2 = j2.getPecas().get(escolhaPecaj2);
 
             ArrayList <Posicao> posicoesJ2 = pecaJ2.possiveisMovimentos(tabuleiro);
-            System.out.println(posicoesJ2);
+            for (Posicao posicao:posicoesJ2) {
+                System.out.println(posicoesJ2.indexOf(posicao));
+
+            }
             int escolhaPosicaoJ2 = sc.nextInt();
             Posicao posicaoJ2 = posicoesJ2.get(escolhaPosicaoJ2);
 
@@ -51,7 +56,7 @@ public class Main {
             System.out.println(validarVitoria(j1));
 
 
-        }while(!validarVitoria(j1) || !validarVitoria(j2));
+        }while(!validarVitoria(j1) && !validarVitoria(j2));
 
 
     }
