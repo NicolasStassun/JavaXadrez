@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class Rainha extends Peca {
 
-    public Rainha(String cor,Posicao posicao){
-        super(cor, posicao);
+    public Rainha(String cor, Posicao posicao){
+        super(cor,posicao);
         this.icone = gerarIcone();
     }
 
@@ -22,7 +22,7 @@ public class Rainha extends Peca {
 
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
 
-        for (int i = (validaExtremidade(posicaoTabuleiro) ? 64 : posicaoTabuleiro + 7); i < tabuleiro.getPosicoes().size(); i += 7) {
+        for (int i = (validaExtremidade(posicaoTabuleiro) ? 63 : posicaoTabuleiro + 7); i < tabuleiro.getPosicoes().size(); i += 7) {
             Posicao posicao = tabuleiro.getPosicoes().get(i);
 
             this.verificaPeca(posicao, possiveisMovimentos);
@@ -32,20 +32,16 @@ public class Rainha extends Peca {
             }
         }
 
-        for (int i = (validaExtremidade(posicaoTabuleiro+1) ? 64 : posicaoTabuleiro - 7); i >= tabuleiro.getPosicoes().size(); i -= 7) {
+        for (int i = (validaExtremidade(posicaoTabuleiro+1) ? 63 : posicaoTabuleiro - 7); i >= 7; i -= 7) {
             Posicao posicao = tabuleiro.getPosicoes().get(i);
-
-            this.verificaPeca(posicao, possiveisMovimentos);
 
             if (verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos) || validaExtremidade(i+1)) {
                 break;
             }
         }
 
-        for (int i = (validaExtremidade(posicaoTabuleiro+1)? 64 : posicaoTabuleiro + 9); i < tabuleiro.getPosicoes().size(); i += 9) {
+        for (int i = (validaExtremidade(posicaoTabuleiro+1)? 63 : posicaoTabuleiro + 9); i < tabuleiro.getPosicoes().size(); i += 9) {
             Posicao posicao = tabuleiro.getPosicoes().get(i);
-
-            this.verificaPeca(posicao, possiveisMovimentos);
 
             if (tabuleiro.getPosicoes().get(i).getPeca() == null) {
                 possiveisMovimentos.add(tabuleiro.getPosicoes().get(i));
@@ -56,10 +52,8 @@ public class Rainha extends Peca {
             }
         }
 
-        for (int i = (validaExtremidade(posicaoTabuleiro) ? 64 : posicaoTabuleiro - 9); i >= tabuleiro.getPosicoes().size(); i -= 9) {
+        for (int i = (validaExtremidade(posicaoTabuleiro) ? 63 : posicaoTabuleiro - 9); i >= 9; i -= 9) {
             Posicao posicao = tabuleiro.getPosicoes().get(i);
-
-            this.verificaPeca(posicao, possiveisMovimentos);
 
             if (verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos) || validaExtremidade(i)) {
                 break;
@@ -80,7 +74,7 @@ public class Rainha extends Peca {
             }
         }
 
-        for (int i = (validaExtremidade(posicaoTabuleiro+1)? 64 : posicaoTabuleiro + 1); i < tabuleiro.getPosicoes().size(); i ++) {
+        for (int i = (validaExtremidade(posicaoTabuleiro+1)? 63 : posicaoTabuleiro + 1); i < tabuleiro.getPosicoes().size(); i ++) {
 
             if (verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos)||validaExtremidade(i+1)){
                 break;
@@ -89,8 +83,6 @@ public class Rainha extends Peca {
 
         for (int i = (validaExtremidade(posicaoTabuleiro) ? -1 : posicaoTabuleiro - 1); i >= 0; i --) {
             Posicao posicao = tabuleiro.getPosicoes().get(i);
-
-            this.verificaPeca(posicao, possiveisMovimentos);
 
             if (validaExtremidade(i)||
                     verificaPeca(tabuleiro.getPosicoes().get(i), possiveisMovimentos)) {

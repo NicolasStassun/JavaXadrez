@@ -24,6 +24,7 @@ public class Rei extends Peca {
         ArrayList<Posicao> possiveisMovimentos = new ArrayList<>();
 
         for (Posicao posicao : tabuleiro.getPosicoes()) {
+
             int indice = tabuleiro.getPosicoes().indexOf(posicao);
 
             if (indice == posicaoNoTabuleiro - 9 ||
@@ -64,4 +65,18 @@ public class Rei extends Peca {
     public void setPrimMov(boolean primMov) {
         this.primMov = primMov;
     }
+    public void adicionaRoque(Tabuleiro tabuleiro){
+        if (this.primMov){
+            this.primMov = false;
+            for (Posicao posicao : tabuleiro.getPosicoes()
+                 ) {
+
+                if (tabuleiro.getPosicoes()){
+
+                }
+
+            }
+        }
+    }
+
 }

@@ -8,8 +8,9 @@ public class Main {
     public static void main(String[] args) {
 
 
-        Jogador j1 = new Jogador("jorge", "Senh@123");
-        Jogador j2 = new Jogador("Wilson", "wilson");
+        Jogador j1 = new Jogador("Jogador 1", "j1");
+        Jogador j2 = new Jogador("Jogador 2", "j2");
+
 
         j1.setCor("Branco", tabuleiro);
         j2.setCor("Preto",tabuleiro);
@@ -31,7 +32,7 @@ public class Main {
                 }while ((j1.getPecas().size()-1) < escolhaPecaj1);
                 pecaJ1 = j1.getPecas().get(escolhaPecaj1);
                 if (pecaJ1 instanceof Peao){
-                    pecaJ1 = verificaTrocaPeao(tabuleiro.getPosicoes().indexOf(pecaJ1.getPosicao()),pecaJ1.getPosicao(),pecaJ1);
+                    pecaJ1 = verificaTrocaPeao(tabuleiro.getPosicoes().indexOf(pecaJ1.getPosicao()),pecaJ1.getPosicao(),pecaJ1, j1);
                 }
                 posicoesJ1 = pecaJ1.possiveisMovimentos(tabuleiro);
                 if (posicoesJ1.isEmpty()){
@@ -63,7 +64,7 @@ public class Main {
                 }while((j2.getPecas().size()-1) < escolhaPecaj2);
                 pecaJ2 = j2.getPecas().get(escolhaPecaj2);
                 if (pecaJ2 instanceof Peao){
-                    pecaJ2 = verificaTrocaPeao(tabuleiro.getPosicoes().indexOf(pecaJ2.getPosicao()),pecaJ2.getPosicao(),pecaJ2);
+                    pecaJ2 = verificaTrocaPeao(tabuleiro.getPosicoes().indexOf(pecaJ2.getPosicao()),pecaJ2.getPosicao(),pecaJ2, j2);
                 }
                 posicoesJ2 = pecaJ2.possiveisMovimentos(tabuleiro);
                 if (posicoesJ2.isEmpty()){
@@ -168,7 +169,7 @@ public class Main {
         System.exit(0);
         return true;
     }
-    public static Peca verificaTrocaPeao(int posicaoNoTabuleiro, Posicao posicaoAtual, Peca peao) {
+    public static Peca verificaTrocaPeao(int posicaoNoTabuleiro, Posicao posicaoAtual, Peca peao, Jogador jogador) {
         System.out.println("a");
         Peca peca = peao;
         if (peao.getCor().equals("Preto")) {
@@ -187,12 +188,20 @@ public class Main {
                 switch (opcaoDeTrocaDoPeaoPreto) {
                     case 1:
                         peca = new Rainha("Preto", posicaoAtual);
+                        jogador.getPecas().add(peca);
+                        break;
                     case 2:
                         peca = new Torre("Preto", posicaoAtual);
+                        jogador.getPecas().add(peca);
+                        break;
                     case 3:
                         peca = new Bispo("Preto", posicaoAtual);
+                        jogador.getPecas().add(peca);
+                        break;
                     case 4:
                         peca = new Cavalo("Preto", posicaoAtual);
+                        jogador.getPecas().add(peca);
+                        break;
                 }
             }
         }
@@ -211,12 +220,20 @@ public class Main {
                         switch (opcaoDeTrocaDoPeaoBranco) {
                             case 1:
                                 peca = new Rainha("Branco", posicaoAtual);
+                                jogador.getPecas().add(peca);
+                                break;
                             case 2:
                                 peca = new Torre("Branco", posicaoAtual);
+                                jogador.getPecas().add(peca);
+                                break;
                             case 3:
                                 peca = new Bispo("Branco", posicaoAtual);
+                                jogador.getPecas().add(peca);
+                                break;
                             case 4:
                                 peca = new Cavalo("Branco", posicaoAtual);
+                                jogador.getPecas().add(peca);
+                                break;
                         }
                     } while (opcaoDeTrocaDoPeaoBranco < 0 || opcaoDeTrocaDoPeaoBranco >= 4);
                 }
