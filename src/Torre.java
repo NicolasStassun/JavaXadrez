@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.IllegalFormatCodePointException;
 
 public class Torre extends Peca {
-    private boolean primMov;
+    private boolean primMov = true;
 
     public Torre(String cor, Posicao posicao){
         super(cor, posicao);
@@ -61,4 +61,11 @@ public class Torre extends Peca {
         return possiveisMovimentos;
     }
 
+    public boolean isPrimMov() {
+        return primMov;
+    }
+
+    public void setPrimMov(boolean primMov) {
+        this.primMov = primMov;
+    }
 }

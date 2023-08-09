@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Rei extends Peca {
-    private boolean primMov;
+    private boolean primMov = true;
 
     public Rei(String cor, Posicao posicao){
         super(cor, posicao);
@@ -57,4 +57,11 @@ public class Rei extends Peca {
         return possiveisMovimentos;
     }
 
+    public boolean isPrimMov() {
+        return primMov;
+    }
+
+    public void setPrimMov(boolean primMov) {
+        this.primMov = primMov;
+    }
 }

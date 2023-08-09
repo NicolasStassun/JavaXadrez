@@ -20,6 +20,17 @@ public class Jogador {
         if (pecaAdversaria != null && valida) {
             adversario.pecas.remove(pecaAdversaria);
         }
+
+        if (peca instanceof Peao){
+            ((Peao) peca).setPrimMov(false);
+        }
+        if (peca instanceof Rei){
+            ((Rei) peca).setPrimMov(false);
+        }
+        if (peca instanceof Torre){
+            ((Torre) peca).setPrimMov(false);
+        }
+
         return valida;
     }
 
