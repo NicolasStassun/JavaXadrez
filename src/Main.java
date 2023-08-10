@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.awt.Color;
@@ -26,6 +27,7 @@ public class Main {
             ArrayList <Posicao> posicoesJ1;
             do {
                 int escolhaPecaj1 = 0;
+                verificaXeque(j2,j1);
                 do {
                     System.out.println("Escolha sua peça");
                     escolhaPecaj1 = sc.nextInt();
@@ -41,7 +43,8 @@ public class Main {
             }while(posicoesJ1.isEmpty());
             int escolhaPosicaoj1;
             do {
-                System.out.println(posicoesJ1);
+                mostraPosicoesEmPossiveisMovimentos(tabuleiro, pecaJ1.possiveisMovimentos(tabuleiro));
+                System.out.println("");
                 System.out.println("Escolha a posição");
                 escolhaPosicaoj1 = sc.nextInt();
             }while((posicoesJ1.size()-1) < escolhaPosicaoj1);
@@ -58,6 +61,7 @@ public class Main {
             ArrayList <Posicao> posicoesJ2;
             do {
                 int escolhaPecaj2 = 0;
+                verificaXeque(j1,j2);
                 do {
                     System.out.println("Escolha sua peça");
                     escolhaPecaj2 = sc.nextInt();
@@ -73,7 +77,8 @@ public class Main {
             }while(posicoesJ2.isEmpty());
             int escolhaPosicaoJ2;
             do {
-                System.out.println(posicoesJ2);
+                mostraPosicoesEmPossiveisMovimentos(tabuleiro, pecaJ2.possiveisMovimentos(tabuleiro));
+                System.out.println("");
                 System.out.println("Escolha a posição");
                 escolhaPosicaoJ2 = sc.nextInt();
             }while ((posicoesJ2.size()-1) < escolhaPosicaoJ2);
@@ -170,7 +175,6 @@ public class Main {
         return true;
     }
     public static Peca verificaTrocaPeao(int posicaoNoTabuleiro, Posicao posicaoAtual, Peca peao, Jogador jogador) {
-        System.out.println("a");
         Peca peca = peao;
         if (peao.getCor().equals("Preto")) {
             if (posicaoNoTabuleiro > 55) {
@@ -240,5 +244,68 @@ public class Main {
 
             }
         return peca;
+    }
+    public static void mostraPosicoesEmPossiveisMovimentos(Tabuleiro tabuleiro, ArrayList<Posicao> possiveisMovimentos){
+
+        for (Posicao posicaoPossivel:tabuleiro.getPosicoes()) {
+
+            int i = tabuleiro.getPosicoes().indexOf(posicaoPossivel);
+
+            for (Posicao Validar:
+                    possiveisMovimentos) {
+                 if (posicaoPossivel.equals(Validar)){
+                     int a = possiveisMovimentos.indexOf(Validar);
+                     if (posicaoPossivel.getPeca() == null) {
+
+                         System.out.print(a + " - " + i+"\u3164 | \u3164");
+
+                     }
+                     else {
+
+                         System.out.print(a + " - " + posicaoPossivel.getPeca().icone+"\u3164 | \u3164");
+
+                     }
+
+                 }
+
+            }
+
+        };
+    }
+    public static void verificaXeque(Jogador jogadorAdversario, Jogador jogadorUsuario){
+
+             Peca pecaAmeacandoORei;
+
+            for (Peca pecaJogadorUsuario:
+                 jogadorUsuario.getPecas()) {
+
+                for (Peca pecaAdversaria:
+                        jogadorAdversario.getPecas()) {
+
+                    for (Posicao possivelMovimentosAdversario:
+                        pecaAdversaria.possiveisMovimentos(tabuleiro)){
+                        if (pecaJogadorUsuario instanceof Rei) {
+                            if (possivelMovimentosAdversario.getPeca()!=null){
+                                System.out.println("a");
+                                if(possivelMovimentosAdversario.getPeca().equals(pecaJogadorUsuario)){
+                                    System.out.println("b");
+                                }
+                            }
+                            for (Posicao possivelMovimentosUsuario:
+                                    pecaJogadorUsuario.possiveisMovimentos(tabuleiro)) {
+                                if (possivelMovimentosAdversario.equals(possivelMovimentosUsuario) || pecaAdversaria.getPosicao().equals(possivelMovimentosUsuario)){
+                                    System.out.println("Rei em Xeque");
+                                    mostraPosicoesEmPossiveisMovimentos(tabuleiro,pecaJogadorUsuario.possiveisMovimentos(tabuleiro));
+                                }
+                            }
+                        }
+
+                    }
+
+
+            }
+
+        }
+
     }
 }

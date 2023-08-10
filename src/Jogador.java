@@ -51,7 +51,7 @@ public class Jogador {
                     display.add(display.size()+"♗");
                 }
                 else {
-                    display.add(display.size()+"♗");
+                    display.add(display.size()+"♝");
                 }
             }
 
