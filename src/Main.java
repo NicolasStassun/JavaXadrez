@@ -27,7 +27,7 @@ public class Main {
             ArrayList <Posicao> posicoesJ1;
             do {
                 int escolhaPecaj1 = 0;
-                verificaXeque(j2,j1);
+                verificaXeque(j2);
                 do {
                     System.out.println("Escolha sua peça");
                     escolhaPecaj1 = sc.nextInt();
@@ -61,7 +61,7 @@ public class Main {
             ArrayList <Posicao> posicoesJ2;
             do {
                 int escolhaPecaj2 = 0;
-                verificaXeque(j1,j2);
+                verificaXeque(j1);
                 do {
                     System.out.println("Escolha sua peça");
                     escolhaPecaj2 = sc.nextInt();
@@ -272,40 +272,26 @@ public class Main {
 
         };
     }
-    public static void verificaXeque(Jogador jogadorAdversario, Jogador jogadorUsuario){
-
-             Peca pecaAmeacandoORei;
-
-            for (Peca pecaJogadorUsuario:
-                 jogadorUsuario.getPecas()) {
+    public static void verificaXeque(Jogador jogadorAdversario){
 
                 for (Peca pecaAdversaria:
                         jogadorAdversario.getPecas()) {
 
                     for (Posicao possivelMovimentosAdversario:
                         pecaAdversaria.possiveisMovimentos(tabuleiro)){
-                        if (pecaJogadorUsuario instanceof Rei) {
+                        if (possivelMovimentosAdversario.getPeca() instanceof Rei) {
                             if (possivelMovimentosAdversario.getPeca()!=null){
                                 System.out.println("a");
-                                if(possivelMovimentosAdversario.getPeca().equals(pecaJogadorUsuario)){
+                                if(possivelMovimentosAdversario.getPeca().equals(jogadorAdversario.getPecas().get(0))){
                                     System.out.println("b");
                                 }
                             }
-                            for (Posicao possivelMovimentosUsuario:
-                                    pecaJogadorUsuario.possiveisMovimentos(tabuleiro)) {
-                                if (possivelMovimentosAdversario.equals(possivelMovimentosUsuario) || pecaAdversaria.getPosicao().equals(possivelMovimentosUsuario)){
-                                    System.out.println("Rei em Xeque");
-                                    mostraPosicoesEmPossiveisMovimentos(tabuleiro,pecaJogadorUsuario.possiveisMovimentos(tabuleiro));
-                                }
-                            }
+
                         }
+
 
                     }
 
-
             }
-
         }
-
     }
-}
