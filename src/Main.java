@@ -272,26 +272,42 @@ public class Main {
 
         };
     }
-    public static void verificaXeque(Jogador jogadorAdversario){
+    public static boolean verificaXeque(Jogador jogador) {
+        for (Peca pecaAdversaria:jogador.getPecas()){
+            pecaAdversaria.possiveisMovimentos(tabuleiro);
+        }
 
-                for (Peca pecaAdversaria:
-                        jogadorAdversario.getPecas()) {
-
-                    for (Posicao possivelMovimentosAdversario:
-                        pecaAdversaria.possiveisMovimentos(tabuleiro)){
-                        if (possivelMovimentosAdversario.getPeca() instanceof Rei) {
-                            if (possivelMovimentosAdversario.getPeca()!=null){
-                                System.out.println("a");
-                                if(possivelMovimentosAdversario.getPeca().equals(jogadorAdversario.getPecas().get(0))){
-                                    System.out.println("b");
-                                }
-                            }
-
-                        }
-
-
-                    }
-
+        for (Peca peca : jogador.getPecas()) {
+            for (Posicao posicaoPossivelMovimento : peca.possiveisMovimentos(tabuleiro)) {
+                if (posicaoPossivelMovimento.getPeca() instanceof Rei) {
+                    System.out.println("Entrou em Xeque");
+                    return true;
+                }
             }
         }
+        return false;
     }
+
+    public static void simulacao(Jogador jogador, Tabuleiro tabuleiro,Jogador jogadorAdversario) {
+        int posicaoAntiga;
+        Peca pecaAntiga=null;
+        ArrayList<Posicao> posicaosRemovidas = new ArrayList<>();
+
+        for (Peca peca : jogador.getPecas()) {
+            posicaoAntiga = tabuleiro.getPosicoes().indexOf(peca.getPosicao());
+            peca.possiveisMovimentos(tabuleiro);
+            for (Posicao posicao : peca.possiveisMovimentos(tabuleiro)) {
+
+                pecaAntiga = posicao.getPeca();
+                peca.mover(tabuleiro, posicao);
+
+                if (verificaXeque(jogadorAdversario)) {
+                    posicaosRemovidas.add(posicao);
+                }
+                peca.mover(tabuleiro, tabuleiro.getPosicoes().get(posicaoAntiga));
+                posicao.setPeca(pecaAntiga);
+            }
+            peca.possiveisMovimentos(tabuleiro).removeAll(posicaosRemovidas);
+        }
+    }
+}
